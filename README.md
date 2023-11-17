@@ -54,7 +54,9 @@ Time to crunch the numbers! We'll define a function, `calculate_age()`, to calcu
 def calculate_age():
     today = date.today()
     birth_date = date(int(year_entry.get()), int(month_entry.get()), int(date_entry.get()))
-    age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+    age = today.year - birth_date.year
+    if today.month < birth_date.month or today.month == birth_date.month and today.day < birth_date.day:
+        age -= 1
     result_label1.config(text = f"Hi {name_entry.get()}!", font=entry_font)
     result_label2.config(text = f"You are {age} years old", font=entry_font)
 ```
