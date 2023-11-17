@@ -10,7 +10,7 @@ To kick things off, we need to import two essential libraries into our code: `tk
 
 ```python
 import tkinter as tk
-from datetime import datetime
+from datetime import date
 ```
 
 ### Step 2: Create the App Window
@@ -19,7 +19,13 @@ Let's set up a sleek window for our app and give it the catchy name of *Age Calc
 
 ```python
 root = tk.Tk()
+root.geometry("350x350")
 root.title("Age Calculator")
+```
+And also, variables for fonts of labels and entry
+```python
+label_font = ("ariel", 12, "bold")
+entry_font = ("ariel", 10)
 ```
 
 ### Step 3: User Input Section
@@ -27,42 +33,42 @@ root.title("Age Calculator")
 Now, we're going to create labels for the name, year, month, and date. Users will input their information into corresponding entry fields.
 
 ```python
-name_label = tk.Label(root, text="Name:")
-name_entry = tk.Entry(root)
+name_label = tk.Label(root, text="Name:", font=label_font)
+name_entry = tk.Entry(root, font=entry_font)
 
-year_label = tk.Label(root, text="Year:")
-year_entry = tk.Entry(root)
+year_label = tk.Label(root, text="Year:", font=label_font)
+year_entry = tk.Entry(root, font=entry_font)
 
-month_label = tk.Label(root, text="Month:")
-month_entry = tk.Entry(root)
+month_label = tk.Label(root, text="Month:", font=label_font)
+month_entry = tk.Entry(root, font=entry_font)
 
-date_label = tk.Label(root, text="Date:")
-date_entry = tk.Entry(root)
+date_label = tk.Label(root, text="Date:", font=label_font)
+date_entry = tk.Entry(root, font=entry_font)
 ```
 
 ### Step 4: Age Calculation Function
 
-Time to crunch the numbers! We'll define a function, `ageCalc()`, to calculate the user's age by subtracting their birth date from today's date.
+Time to crunch the numbers! We'll define a function, `calculate_age()`, to calculate the user's age by subtracting their birth date from today's date.
 
 ```python
-def ageCalc():
+def calculate_age():
     today = date.today()
-    birth_date = datetime(int(year_entry.get()), int(month_entry.get()), int(date_entry.get()))
+    birth_date = date(int(year_entry.get()), int(month_entry.get()), int(date_entry.get()))
     age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
-    result_label.config(text=f"Your Age: {age} years")
+    result_label1.config(text = f"Hi {name_entry.get()}!", font=entry_font)
+    result_label2.config(text = f"You are {age} years old", font=entry_font)
 ```
 
 ### Step 5: Submit Button
 
-Create a button for users to submit their input values, linking it to the `ageCalc` function.
+Create a button for users to submit their input values, linking it to the `calculate_age` function.
 
 ```python
-calculate_button = tk.Button(root, text="Calculate Age", command=ageCalc)
+calculate_button = tk.Button(root, text="Calculate Age", command=calculate_age, font=entry_font, fg="white", bg="#21130d")
 ```
+### Step 6: Layout
 
-### Step 6: Run the App
-
-Lastly, let's run everything inside the window using the `mainloop()` method.
+Nothing, looks perfect untill it has a proper layout. So we create a layout for Lables, entry fields, button and the result label.
 
 ```python
 name_label.grid(row=0, column=0)
@@ -81,7 +87,13 @@ calculate_button.grid(row=4, column=0, columnspan=2)
 
 result_label = tk.Label(root, text="")
 result_label.grid(row=5, column=0, columnspan=2)
+```
 
+### Step 7: Run the App
+
+Lastly, let's run everything inside the window using the `mainloop()` method.
+
+```python
 root.mainloop()
 ```
 
