@@ -71,22 +71,25 @@ calculate_button = tk.Button(root, text="Calculate Age", command=calculate_age, 
 Nothing, looks perfect untill it has a proper layout. So we create a layout for Lables, entry fields, button and the result label.
 
 ```python
-name_label.grid(row=0, column=0)
+name_label.grid(row=0, column=0, padx=50, pady=5)
 name_entry.grid(row=0, column=1)
 
-year_label.grid(row=1, column=0)
+year_label.grid(row=1, column=0, padx=50, pady=5)
 year_entry.grid(row=1, column=1)
 
-month_label.grid(row=2, column=0)
+month_label.grid(row=2, column=0, padx=50, pady=5)
 month_entry.grid(row=2, column=1)
 
-date_label.grid(row=3, column=0)
+date_label.grid(row=3, column=0, padx=50, pady=5)
 date_entry.grid(row=3, column=1)
 
-calculate_button.grid(row=4, column=0, columnspan=2)
+calculate_button.grid(row=4, column=1, pady=5)
 
-result_label = tk.Label(root, text="")
-result_label.grid(row=5, column=0, columnspan=2)
+result_label1 = tk.Label(root, text="")
+result_label1.grid(row=5, column=1, pady=5)
+
+result_label2 = tk.Label(root, text="")
+result_label2.grid(row=6, column=1, pady=5)
 ```
 
 ### Step 7: Run the App
